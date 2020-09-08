@@ -37,3 +37,8 @@ message MultiaddressSetRequest {
   string id = 1;
   repeated string multiaddresses = 2;
 }
+
+message InitialRequest {
+  repeated int32 types = 1;
+  bytes serial = 2;
+}

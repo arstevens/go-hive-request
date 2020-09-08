@@ -102,3 +102,17 @@ func NewMultiaddressSetRequest(id string, addrs []ma.Multiaddr) ([]byte, error) 
 	}
 	return request, nil
 }
+
+/* NewInitialRequest returns a new instance of InitialRequest
+using an underlying protocol buffer */
+func NewInitialRequest(types []int32, serial []byte) ([]byte, error) {
+	initRequest := &InitialRequest{
+		Types:  types,
+		Serial: serial,
+	}
+	request, err := proto.Marshal(initRequest)
+	if err != nil {
+		return nil, &MarshalErr{simpleErr{err: err, msg: "MarshalErr in NewInitialRequest"}}
+	}
+	return request, nil
+}
