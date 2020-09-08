@@ -1,0 +1,39 @@
+syntax = "proto3";
+package hrequest;
+
+message VerificationRequest {
+  message Keypair {
+    string id = 1;
+    bytes key = 2;
+  }
+
+  bytes snapshot = 1;
+  repeated Keypair keys = 2;
+}
+
+message WorkerParameters {
+  int32 storage = 1;
+  int32 compute = 2;
+  float availability = 3;
+}
+
+message SubnetRequest {
+  int32 totalBystanders = 1;
+  WorkerParameters workerOpts = 2;
+}
+
+message ConflictRequest {
+  string senderSignature = 1;
+  string serverSignature = 2;
+  bytes epoch = 3;
+}
+
+message AvailabilitySetRequest {
+  string id = 1;
+  WorkerParameters availabilityOpts = 2;
+}
+
+message MultiaddressSetRequest {
+  string id = 1;
+  repeated string multiaddresses = 2;
+}
