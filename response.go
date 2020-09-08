@@ -1,8 +1,8 @@
 package hrequest
 
 import (
-	"github.com/gogo/protobuf/proto"
 	ma "github.com/multiformats/go-multiaddr"
+	"google.golang.org/protobuf/proto"
 )
 
 /* NewVerificationResponse marshals a verification response value

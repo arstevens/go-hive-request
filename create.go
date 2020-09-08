@@ -4,8 +4,8 @@ import (
 	"crypto"
 
 	snapshot "github.com/arstevens/go-snapshot"
-	"github.com/gogo/protobuf/proto"
 	ma "github.com/multiformats/go-multiaddr"
+	"google.golang.org/protobuf/proto"
 )
 
 type PublicKeyMarshaler func(crypto.PublicKey) []byte

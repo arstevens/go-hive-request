@@ -3,6 +3,8 @@ package hrequest
 import (
 	"fmt"
 	"testing"
+
+	"google.golang.org/protobuf/proto"
 )
 
 func TestRequest(t *testing.T) {
@@ -16,4 +18,11 @@ func TestRequest(t *testing.T) {
 	}
 	fmt.Println(subreq)
 	fmt.Println(req)
+
+	var response SubnetRequest
+	err = proto.Unmarshal(subreq, &response)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Success")
 }
