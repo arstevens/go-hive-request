@@ -261,17 +261,18 @@ func (x *ConflictRequest) GetEpoch() []byte {
 	return nil
 }
 
-type AvailabilitySetRequest struct {
+type TemporaryStateChangeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id               string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	AvailabilityOpts *WorkerParameters `protobuf:"bytes,2,opt,name=availabilityOpts,proto3" json:"availabilityOpts,omitempty"`
+	Id             string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	WorkerOpts     *WorkerParameters `protobuf:"bytes,2,opt,name=workerOpts,proto3" json:"workerOpts,omitempty"`
+	Multiaddresses []string          `protobuf:"bytes,3,rep,name=multiaddresses,proto3" json:"multiaddresses,omitempty"`
 }
 
-func (x *AvailabilitySetRequest) Reset() {
-	*x = AvailabilitySetRequest{}
+func (x *TemporaryStateChangeRequest) Reset() {
+	*x = TemporaryStateChangeRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_requests_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -279,13 +280,13 @@ func (x *AvailabilitySetRequest) Reset() {
 	}
 }
 
-func (x *AvailabilitySetRequest) String() string {
+func (x *TemporaryStateChangeRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AvailabilitySetRequest) ProtoMessage() {}
+func (*TemporaryStateChangeRequest) ProtoMessage() {}
 
-func (x *AvailabilitySetRequest) ProtoReflect() protoreflect.Message {
+func (x *TemporaryStateChangeRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_requests_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -297,74 +298,26 @@ func (x *AvailabilitySetRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AvailabilitySetRequest.ProtoReflect.Descriptor instead.
-func (*AvailabilitySetRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TemporaryStateChangeRequest.ProtoReflect.Descriptor instead.
+func (*TemporaryStateChangeRequest) Descriptor() ([]byte, []int) {
 	return file_requests_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *AvailabilitySetRequest) GetId() string {
+func (x *TemporaryStateChangeRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *AvailabilitySetRequest) GetAvailabilityOpts() *WorkerParameters {
+func (x *TemporaryStateChangeRequest) GetWorkerOpts() *WorkerParameters {
 	if x != nil {
-		return x.AvailabilityOpts
+		return x.WorkerOpts
 	}
 	return nil
 }
 
-type MultiaddressSetRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id             string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Multiaddresses []string `protobuf:"bytes,2,rep,name=multiaddresses,proto3" json:"multiaddresses,omitempty"`
-}
-
-func (x *MultiaddressSetRequest) Reset() {
-	*x = MultiaddressSetRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *MultiaddressSetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MultiaddressSetRequest) ProtoMessage() {}
-
-func (x *MultiaddressSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MultiaddressSetRequest.ProtoReflect.Descriptor instead.
-func (*MultiaddressSetRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *MultiaddressSetRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *MultiaddressSetRequest) GetMultiaddresses() []string {
+func (x *TemporaryStateChangeRequest) GetMultiaddresses() []string {
 	if x != nil {
 		return x.Multiaddresses
 	}
@@ -383,7 +336,7 @@ type InitialRequest struct {
 func (x *InitialRequest) Reset() {
 	*x = InitialRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[6]
+		mi := &file_requests_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -396,7 +349,7 @@ func (x *InitialRequest) String() string {
 func (*InitialRequest) ProtoMessage() {}
 
 func (x *InitialRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[6]
+	mi := &file_requests_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -409,7 +362,7 @@ func (x *InitialRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InitialRequest.ProtoReflect.Descriptor instead.
 func (*InitialRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{6}
+	return file_requests_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *InitialRequest) GetTypes() []int32 {
@@ -437,7 +390,7 @@ type VerificationResponse struct {
 func (x *VerificationResponse) Reset() {
 	*x = VerificationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[7]
+		mi := &file_requests_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -450,7 +403,7 @@ func (x *VerificationResponse) String() string {
 func (*VerificationResponse) ProtoMessage() {}
 
 func (x *VerificationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[7]
+	mi := &file_requests_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -463,7 +416,7 @@ func (x *VerificationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VerificationResponse.ProtoReflect.Descriptor instead.
 func (*VerificationResponse) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{7}
+	return file_requests_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *VerificationResponse) GetSignatures() []*VerificationResponse_SignaturePair {
@@ -487,7 +440,7 @@ type SubnetResponse struct {
 func (x *SubnetResponse) Reset() {
 	*x = SubnetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[8]
+		mi := &file_requests_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -500,7 +453,7 @@ func (x *SubnetResponse) String() string {
 func (*SubnetResponse) ProtoMessage() {}
 
 func (x *SubnetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[8]
+	mi := &file_requests_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -513,7 +466,7 @@ func (x *SubnetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubnetResponse.ProtoReflect.Descriptor instead.
 func (*SubnetResponse) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{8}
+	return file_requests_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SubnetResponse) GetWorkers() []string {
@@ -555,7 +508,7 @@ type ReturnCodeResponse struct {
 func (x *ReturnCodeResponse) Reset() {
 	*x = ReturnCodeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[9]
+		mi := &file_requests_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -568,7 +521,7 @@ func (x *ReturnCodeResponse) String() string {
 func (*ReturnCodeResponse) ProtoMessage() {}
 
 func (x *ReturnCodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[9]
+	mi := &file_requests_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -581,7 +534,7 @@ func (x *ReturnCodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReturnCodeResponse.ProtoReflect.Descriptor instead.
 func (*ReturnCodeResponse) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{9}
+	return file_requests_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ReturnCodeResponse) GetReturnCode() int32 {
@@ -603,7 +556,7 @@ type VerificationRequest_Keypair struct {
 func (x *VerificationRequest_Keypair) Reset() {
 	*x = VerificationRequest_Keypair{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[10]
+		mi := &file_requests_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -616,7 +569,7 @@ func (x *VerificationRequest_Keypair) String() string {
 func (*VerificationRequest_Keypair) ProtoMessage() {}
 
 func (x *VerificationRequest_Keypair) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[10]
+	mi := &file_requests_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -658,7 +611,7 @@ type VerificationResponse_SignaturePair struct {
 func (x *VerificationResponse_SignaturePair) Reset() {
 	*x = VerificationResponse_SignaturePair{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[11]
+		mi := &file_requests_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -671,7 +624,7 @@ func (x *VerificationResponse_SignaturePair) String() string {
 func (*VerificationResponse_SignaturePair) ProtoMessage() {}
 
 func (x *VerificationResponse_SignaturePair) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[11]
+	mi := &file_requests_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -684,7 +637,7 @@ func (x *VerificationResponse_SignaturePair) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use VerificationResponse_SignaturePair.ProtoReflect.Descriptor instead.
 func (*VerificationResponse_SignaturePair) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{7, 0}
+	return file_requests_proto_rawDescGZIP(), []int{6, 0}
 }
 
 func (x *VerificationResponse_SignaturePair) GetId() string {
@@ -713,7 +666,7 @@ type SubnetResponse_AddressPair struct {
 func (x *SubnetResponse_AddressPair) Reset() {
 	*x = SubnetResponse_AddressPair{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[12]
+		mi := &file_requests_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -726,7 +679,7 @@ func (x *SubnetResponse_AddressPair) String() string {
 func (*SubnetResponse_AddressPair) ProtoMessage() {}
 
 func (x *SubnetResponse_AddressPair) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[12]
+	mi := &file_requests_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -739,7 +692,7 @@ func (x *SubnetResponse_AddressPair) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubnetResponse_AddressPair.ProtoReflect.Descriptor instead.
 func (*SubnetResponse_AddressPair) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{8, 0}
+	return file_requests_proto_rawDescGZIP(), []int{7, 0}
 }
 
 func (x *SubnetResponse_AddressPair) GetId() string {
@@ -792,18 +745,15 @@ var file_requests_proto_rawDesc = []byte{
 	0x53, 0x69, 0x67, 0x6e, 0x61, 0x74, 0x75, 0x72, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x0f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x74, 0x75, 0x72, 0x65,
 	0x12, 0x14, 0x0a, 0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52,
-	0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x22, 0x70, 0x0a, 0x16, 0x41, 0x76, 0x61, 0x69, 0x6c, 0x61,
-	0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
-	0x12, 0x46, 0x0a, 0x10, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79,
+	0x05, 0x65, 0x70, 0x6f, 0x63, 0x68, 0x22, 0x91, 0x01, 0x0a, 0x1b, 0x54, 0x65, 0x6d, 0x70, 0x6f,
+	0x72, 0x61, 0x72, 0x79, 0x53, 0x74, 0x61, 0x74, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x3a, 0x0a, 0x0a, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72,
 	0x4f, 0x70, 0x74, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x68, 0x72, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x50, 0x61, 0x72, 0x61,
-	0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x52, 0x10, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x69,
-	0x6c, 0x69, 0x74, 0x79, 0x4f, 0x70, 0x74, 0x73, 0x22, 0x50, 0x0a, 0x16, 0x4d, 0x75, 0x6c, 0x74,
-	0x69, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
-	0x69, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x61, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0e, 0x6d, 0x75, 0x6c, 0x74,
+	0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x52, 0x0a, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x4f, 0x70,
+	0x74, 0x73, 0x12, 0x26, 0x0a, 0x0e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x61, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x65, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0e, 0x6d, 0x75, 0x6c, 0x74,
 	0x69, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x65, 0x73, 0x22, 0x3e, 0x0a, 0x0e, 0x49, 0x6e,
 	0x69, 0x74, 0x69, 0x61, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
 	0x74, 0x79, 0x70, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x05, 0x52, 0x05, 0x74, 0x79, 0x70,
@@ -851,28 +801,27 @@ func file_requests_proto_rawDescGZIP() []byte {
 	return file_requests_proto_rawDescData
 }
 
-var file_requests_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_requests_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_requests_proto_goTypes = []interface{}{
 	(*VerificationRequest)(nil),                // 0: hrequest.VerificationRequest
 	(*WorkerParameters)(nil),                   // 1: hrequest.WorkerParameters
 	(*SubnetRequest)(nil),                      // 2: hrequest.SubnetRequest
 	(*ConflictRequest)(nil),                    // 3: hrequest.ConflictRequest
-	(*AvailabilitySetRequest)(nil),             // 4: hrequest.AvailabilitySetRequest
-	(*MultiaddressSetRequest)(nil),             // 5: hrequest.MultiaddressSetRequest
-	(*InitialRequest)(nil),                     // 6: hrequest.InitialRequest
-	(*VerificationResponse)(nil),               // 7: hrequest.VerificationResponse
-	(*SubnetResponse)(nil),                     // 8: hrequest.SubnetResponse
-	(*ReturnCodeResponse)(nil),                 // 9: hrequest.ReturnCodeResponse
-	(*VerificationRequest_Keypair)(nil),        // 10: hrequest.VerificationRequest.Keypair
-	(*VerificationResponse_SignaturePair)(nil), // 11: hrequest.VerificationResponse.SignaturePair
-	(*SubnetResponse_AddressPair)(nil),         // 12: hrequest.SubnetResponse.AddressPair
+	(*TemporaryStateChangeRequest)(nil),        // 4: hrequest.TemporaryStateChangeRequest
+	(*InitialRequest)(nil),                     // 5: hrequest.InitialRequest
+	(*VerificationResponse)(nil),               // 6: hrequest.VerificationResponse
+	(*SubnetResponse)(nil),                     // 7: hrequest.SubnetResponse
+	(*ReturnCodeResponse)(nil),                 // 8: hrequest.ReturnCodeResponse
+	(*VerificationRequest_Keypair)(nil),        // 9: hrequest.VerificationRequest.Keypair
+	(*VerificationResponse_SignaturePair)(nil), // 10: hrequest.VerificationResponse.SignaturePair
+	(*SubnetResponse_AddressPair)(nil),         // 11: hrequest.SubnetResponse.AddressPair
 }
 var file_requests_proto_depIdxs = []int32{
-	10, // 0: hrequest.VerificationRequest.keys:type_name -> hrequest.VerificationRequest.Keypair
+	9,  // 0: hrequest.VerificationRequest.keys:type_name -> hrequest.VerificationRequest.Keypair
 	1,  // 1: hrequest.SubnetRequest.workerOpts:type_name -> hrequest.WorkerParameters
-	1,  // 2: hrequest.AvailabilitySetRequest.availabilityOpts:type_name -> hrequest.WorkerParameters
-	11, // 3: hrequest.VerificationResponse.signatures:type_name -> hrequest.VerificationResponse.SignaturePair
-	12, // 4: hrequest.SubnetResponse.addresses:type_name -> hrequest.SubnetResponse.AddressPair
+	1,  // 2: hrequest.TemporaryStateChangeRequest.workerOpts:type_name -> hrequest.WorkerParameters
+	10, // 3: hrequest.VerificationResponse.signatures:type_name -> hrequest.VerificationResponse.SignaturePair
+	11, // 4: hrequest.SubnetResponse.addresses:type_name -> hrequest.SubnetResponse.AddressPair
 	5,  // [5:5] is the sub-list for method output_type
 	5,  // [5:5] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
@@ -935,7 +884,7 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AvailabilitySetRequest); i {
+			switch v := v.(*TemporaryStateChangeRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -947,18 +896,6 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MultiaddressSetRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_requests_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InitialRequest); i {
 			case 0:
 				return &v.state
@@ -970,7 +907,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*VerificationResponse); i {
 			case 0:
 				return &v.state
@@ -982,7 +919,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SubnetResponse); i {
 			case 0:
 				return &v.state
@@ -994,7 +931,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReturnCodeResponse); i {
 			case 0:
 				return &v.state
@@ -1006,7 +943,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*VerificationRequest_Keypair); i {
 			case 0:
 				return &v.state
@@ -1018,7 +955,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*VerificationResponse_SignaturePair); i {
 			case 0:
 				return &v.state
@@ -1030,7 +967,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SubnetResponse_AddressPair); i {
 			case 0:
 				return &v.state
@@ -1049,7 +986,7 @@ func file_requests_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_requests_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

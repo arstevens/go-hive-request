@@ -8,8 +8,12 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+/* PublicKeyMarshaler describes a function that can turn a crypto.PublicKey
+into a byte slice that can be transmitted or stored */
 type PublicKeyMarshaler func(crypto.PublicKey) []byte
 
+/* NewVerificationRequest returns a new instance of a verification.VerificationRequest
+using an underlying protocol buffer */
 func NewVerificationRequest(snap *snapshot.SimpleSnapshot, keys map[string]crypto.PublicKey,
 	keymarsh PublicKeyMarshaler) ([]byte, error) {
 	serialSnap, err := snap.Marshal()
@@ -32,6 +36,8 @@ func NewVerificationRequest(snap *snapshot.SimpleSnapshot, keys map[string]crypt
 	return request, nil
 }
 
+/* NewSubnetRequest returns a new instance of a subnet.SubnetRequest
+using an underlying protocol buffer */
 func NewSubnetRequest(bystanders int, storage int, compute int, availability float32) ([]byte, error) {
 	workerOpts := &WorkerParameters{
 		Storage:      int32(storage),
@@ -50,6 +56,8 @@ func NewSubnetRequest(bystanders int, storage int, compute int, availability flo
 	return request, nil
 }
 
+/* NewConflictRequest returns a new instance of a conflict.ConflictRequest
+using an underlying protocol buffer */
 func NewConflictRequest(epoch *snapshot.SimpleEpochTriplet, serverSig string, senderSig string) ([]byte, error) {
 	serialEpoch, err := epoch.Marshal()
 	if err != nil {
@@ -68,37 +76,29 @@ func NewConflictRequest(epoch *snapshot.SimpleEpochTriplet, serverSig string, se
 	return request, nil
 }
 
-func NewAvailabilitySetRequest(id string, storage int, compute int, availability float32) ([]byte, error) {
-	availabilityOpts := &WorkerParameters{
+/* NewTemporaryStateChangeRequest returns a new instance of a
+reception.TemporaryStateChangeRequest using an underlying protocol buffer */
+func NewTemporaryStateChangeRequest(id string, storage int, compute int, availability float32,
+	addrs []ma.Multiaddr) ([]byte, error) {
+	workerOpts := &WorkerParameters{
 		Storage:      int32(storage),
 		Compute:      int32(compute),
 		Availability: availability,
 	}
-
-	availRequest := &AvailabilitySetRequest{
-		Id:               id,
-		AvailabilityOpts: availabilityOpts,
-	}
-	request, err := proto.Marshal(availRequest)
-	if err != nil {
-		return nil, &MarshalErr{simpleErr{err: err, msg: "MarshalErr in NewAvailabilitySetRequest"}}
-	}
-	return request, nil
-}
-
-func NewMultiaddressSetRequest(id string, addrs []ma.Multiaddr) ([]byte, error) {
 	strAddrs := make([]string, len(addrs))
 	for i, addr := range addrs {
 		strAddrs[i] = addr.String()
 	}
 
-	multiRequest := &MultiaddressSetRequest{
+	tempRequest := &TemporaryStateChangeRequest{
 		Id:             id,
+		WorkerOpts:     workerOpts,
 		Multiaddresses: strAddrs,
 	}
-	request, err := proto.Marshal(multiRequest)
+
+	request, err := proto.Marshal(tempRequest)
 	if err != nil {
-		return nil, &MarshalErr{simpleErr{err: err, msg: "MarshalErr in NewMultiaddressSetRequest"}}
+		return nil, &MarshalErr{simpleErr{err: err, msg: "MarshalErr in NewTemporaryStateChangeRequest()"}}
 	}
 	return request, nil
 }

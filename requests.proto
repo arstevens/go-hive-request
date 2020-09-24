@@ -28,14 +28,10 @@ message ConflictRequest {
   bytes epoch = 3;
 }
 
-message AvailabilitySetRequest {
+message TemporaryStateChangeRequest {
   string id = 1;
-  WorkerParameters availabilityOpts = 2;
-}
-
-message MultiaddressSetRequest {
-  string id = 1;
-  repeated string multiaddresses = 2;
+  WorkerParameters workerOpts = 2;
+  repeated string multiaddresses = 3;
 }
 
 message InitialRequest {
